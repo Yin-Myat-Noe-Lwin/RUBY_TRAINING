@@ -19,7 +19,7 @@ input_array=input.split '/'
 
 age= cyear - input_array[0].to_i- ((cmonth > input_array[1].to_i || (cmonth == input_array[1].to_i && cday >= input_array[2].to_i)) ? 0 : 1)
 
-if (age<18)
+if (age <= 18)
 
   puts "#{age}, child"
 
