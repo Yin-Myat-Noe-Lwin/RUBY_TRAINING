@@ -1,5 +1,3 @@
-require 'date'
-
 now= Time.now
 #current date and time
 
