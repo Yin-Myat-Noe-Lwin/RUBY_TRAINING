@@ -1,5 +1,4 @@
 array_limit = 10
-#limit
 
 print "Enter your array length:"
 
