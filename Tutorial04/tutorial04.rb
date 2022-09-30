@@ -12,7 +12,7 @@ animal_array = []
 
 input = ' '
  
-(1..array_limit).each {
+for i in 1..array_limit do
      
   input = gets.chomp
   #animal name input
@@ -37,4 +37,4 @@ input = ' '
 
   end
    
-}
+end
