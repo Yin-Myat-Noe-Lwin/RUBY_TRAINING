@@ -5,8 +5,6 @@ print "Enter your array length:"
 arr_length = gets.chomp.to_i
 #user input array length
 
-print "Enter animal name into array:"
-
 animal_array = []
 #array
 
@@ -14,6 +12,8 @@ input = ' '
  
 for i in 1..array_limit do
      
+  print "Enter animal name into array:"
+  
   input = gets.chomp
   #animal name input
 
