@@ -1,12 +1,14 @@
-for a in 1..6
+COUNT = 6 
 
-  print " "*(6-a), "*" * ( ( 2 * a  ) - 1 ) , "\n"
+for a in 1..COUNT
 
-end
-
-for b in 1..5
-
-  print " "*b, "*" * ( ( ( 5 - b ) * 2 ) +1 ) , "\n"
+  print " " * (COUNT - a) , "*" * ( ( 2 * a  ) - 1 ) , "\n"
 
 end
+
 #reverse loop
+for b in 1..COUNT-1
+
+  print " " * b , "*" * ( ( ( COUNT - 1 - b ) * 2 ) + 1 ) , "\n"
+
+end
