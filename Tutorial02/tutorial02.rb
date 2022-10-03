@@ -1,28 +1,43 @@
-now= Time.now
+require 'date'
+
 #current date and time
+now= Time.now
 
-cyear=now.year
+current_year = now.year
 
-cmonth=now.month
+current_month = now.month
 
-cday=now.day
+current_day = now.day
 
 print "Enter your date of birth(YYYY-MM-DD):"
 
-input=gets.chomp
 #user input
+input = gets.chomp
 
-input_array=input.split ("-")
-#change input into array
+#change user input into array
+input_array = input.split ("-")
 
-age= cyear - input_array[0].to_i- ((cmonth > input_array[1].to_i || (cmonth == input_array[1].to_i && cday >= input_array[2].to_i)) ? 0 : 1)
+#check if user input date is valid or not
+if ( input_array[0].to_i <= current_year ) && ( Date.valid_date?( input_array[0].to_i , input_array[1].to_i , input_array[2].to_i ) ) 
 
-if (age <= 18)
+  age = current_year - input_array[0].to_i - ( ( current_month > input_array[1].to_i || ( ( current_month == input_array[1].to_i ) && ( current_day >= input_array[2].to_i ) ) ) ? 0 : 1 )
 
-  puts "#{age}, child"
+  if ( age >= 0 && age <= 18 )
+
+    puts "#{age}, child"
+
+  elsif ( age > 18)
+
+    puts "#{age}, adult"
+  
+  else
+
+    puts "Please check your date of birth"
+
+  end
 
 else
 
-  puts "#{age}, adult"
+  puts "invalid input"
 
 end
