@@ -1,31 +1,43 @@
-choice="continue"
+choice = " "
 
-while choice=="continue"
+loop do
 
   print "Enter first number:"
 
-  first_num = gets.chomp
   #first number 
+  first_num = gets.chomp
 
-  is_Integer = first_num.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
   #check if input number is integer or not
+  is_Integer = first_num.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
 
-  break if is_Integer==false
+  if is_Integer == false
+
+    puts "Your input value is not number"
+
+    break
+
+  end
 
   print "operator(+, -, *, /):"
 
-  op = gets.chomp
   #operator
+  op = gets.chomp
 
   print "Enter second number:"
   
-  sec_num = gets.chomp
-  #second number 
+  #second number
+  sec_num = gets.chomp 
 
-  is_Integer = sec_num.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
   #check input number is integer or not
+  is_Integer = sec_num.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
 
-  break if is_Integer==false
+  if is_Integer == false
+
+    puts "Your input value is not number"
+
+    break
+
+  end
 
   case op.to_s
 
@@ -53,14 +65,12 @@ while choice=="continue"
   puts "Invalid operator"
 
   end
-  #case operator
 
   print "Would you like to [continue] or [stop]?"
 
-  choice=gets.chomp.to_s
+  choice = gets.chomp.to_s
 
-  break if choice=="stop"
   #program will stop working if choice is stop
+  break if choice == "stop"
 
 end
-#loop until choice is continue
