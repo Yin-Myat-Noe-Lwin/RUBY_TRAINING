@@ -2,36 +2,39 @@ array_limit = 10
 
 print "Enter your array length:"
 
-arr_length = gets.chomp.to_i
 #user input array length
+arr_length = gets.chomp.to_i
 
+#animal_array
 animal_array = []
-#array
 
 input = ' '
+
+(arr_length < array_limit )? (array_limit = arr_length) : array_limit
  
 for i in 1..array_limit do
      
   print "Enter animal name into array:"
   
-  input = gets.chomp
   #animal name input
+  input = gets.chomp
 
   animal_array.push input
 
-  puts "Array Length: #{animal_array.length}"
-  #animal_array length
-
   if (animal_array.length == array_limit)
 
-    puts "Sorted Array:" + animal_array.sort.to_s
+    sorted_array = []
+
+    sorted_array = animal_array.sort
+
     #sorted animal_array
+    puts "Sorted Array:" + sorted_array.to_s
 
-    puts "Duplicate value removed:"+ animal_array.uniq.to_s
     #remove duplicate value in animal_array
+    puts "Duplicate value removed:"+ sorted_array.uniq.to_s
 
-    puts "Reversed Array:" + animal_array.reverse.to_s
     #reversed animal_array
+    puts "Reversed Array:" + sorted_array.reverse.to_s
 
     break
 
