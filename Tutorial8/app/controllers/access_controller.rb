@@ -23,6 +23,8 @@ class AccessController < ApplicationController
 
     cookies.delete :username
 
+    cookies.delete :email
+
     redirect_to root_url
 
   end
