@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get "/new", to: "images#new"
 
-  get "/success", to: "images#success"
+  post "/success", to: "images#success"
 
   get "/fail" ,  to: "images#fail"
   
