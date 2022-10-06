@@ -5375,3 +5375,149 @@ Processing by AccessController#home as HTML
 Completed 200 OK in 18ms (Views: 16.5ms | Allocations: 2172)
 
 
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:11:38 -0700
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:11:38 -0700
+Processing by AccessController#home as HTML
+Processing by AccessController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendered access/home.html.erb within layouts/application (Duration: 75.2ms | Allocations: 619)
+  Rendered access/home.html.erb within layouts/application (Duration: 89.0ms | Allocations: 637)
+  Rendered layout layouts/application.html.erb (Duration: 2890.7ms | Allocations: 42309)
+Completed 200 OK in 3450ms (Views: 3072.5ms | ActiveRecord: 0.0ms | Allocations: 46191)
+
+
+  Rendered layout layouts/application.html.erb (Duration: 2907.9ms | Allocations: 42571)
+Completed 200 OK in 3576ms (Views: 3197.8ms | ActiveRecord: 0.0ms | Allocations: 46924)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-10-06 08:11:51 -0700
+Processing by AccessController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/new.html.erb within layouts/application
+  Rendered access/new.html.erb within layouts/application (Duration: 147.1ms | Allocations: 1140)
+  Rendered layout layouts/application.html.erb (Duration: 161.1ms | Allocations: 2849)
+Completed 200 OK in 165ms (Views: 162.6ms | ActiveRecord: 0.0ms | Allocations: 3250)
+
+
+Started POST "/access" for 127.0.0.1 at 2022-10-06 08:12:12 -0700
+Processing by AccessController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "username"=>"mumu", "email"=>"leo@gmial.com"}
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms | Allocations: 653)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:12:12 -0700
+Processing by AccessController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendered access/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 68)
+  Rendered layout layouts/application.html.erb (Duration: 14.1ms | Allocations: 1970)
+Completed 200 OK in 21ms (Views: 16.3ms | ActiveRecord: 0.0ms | Allocations: 2432)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:12:42 -0700
+Processing by AccessController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendered access/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 45)
+  Rendered layout layouts/application.html.erb (Duration: 19.7ms | Allocations: 1848)
+Completed 200 OK in 22ms (Views: 21.1ms | ActiveRecord: 0.0ms | Allocations: 2239)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:12:54 -0700
+Processing by AccessController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendered access/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 45)
+  Rendered layout layouts/application.html.erb (Duration: 8.7ms | Allocations: 1850)
+Completed 200 OK in 14ms (Views: 12.8ms | ActiveRecord: 0.0ms | Allocations: 2272)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:13:24 -0700
+Processing by AccessController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendered access/home.html.erb within layouts/application (Duration: 0.3ms | Allocations: 44)
+  Rendered layout layouts/application.html.erb (Duration: 16.8ms | Allocations: 1850)
+Completed 200 OK in 24ms (Views: 20.1ms | ActiveRecord: 0.0ms | Allocations: 2224)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-10-06 08:13:26 -0700
+Processing by AccessController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/new.html.erb within layouts/application
+  Rendered access/new.html.erb within layouts/application (Duration: 2.5ms | Allocations: 674)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 2367)
+Completed 200 OK in 16ms (Views: 14.6ms | ActiveRecord: 0.0ms | Allocations: 2633)
+
+
+Started POST "/access" for 127.0.0.1 at 2022-10-06 08:13:35 -0700
+Processing by AccessController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "username"=>"www", "email"=>"yinmyatnoelwin1@gmail.com"}
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms | Allocations: 441)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:13:37 -0700
+Processing by AccessController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendered access/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 45)
+  Rendered layout layouts/application.html.erb (Duration: 16.7ms | Allocations: 1848)
+Completed 200 OK in 20ms (Views: 18.4ms | ActiveRecord: 0.0ms | Allocations: 2255)
+
+
+Started GET "/logout" for 127.0.0.1 at 2022-10-06 08:13:40 -0700
+Processing by AccessController#destroy as HTML
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms | Allocations: 407)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:13:41 -0700
+Processing by AccessController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendered access/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 44)
+  Rendered layout layouts/application.html.erb (Duration: 9.2ms | Allocations: 1847)
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.0ms | Allocations: 2262)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-10-06 08:13:51 -0700
+Processing by AccessController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/new.html.erb within layouts/application
+  Rendered access/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 663)
+  Rendered layout layouts/application.html.erb (Duration: 16.5ms | Allocations: 2356)
+Completed 200 OK in 19ms (Views: 17.8ms | ActiveRecord: 0.0ms | Allocations: 2622)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:13:55 -0700
+Processing by AccessController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendered access/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 44)
+  Rendered layout layouts/application.html.erb (Duration: 11.3ms | Allocations: 1847)
+Completed 200 OK in 15ms (Views: 12.8ms | ActiveRecord: 0.0ms | Allocations: 2235)
+
+
+Started GET "/login" for 127.0.0.1 at 2022-10-06 08:13:56 -0700
+Processing by AccessController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/new.html.erb within layouts/application
+  Rendered access/new.html.erb within layouts/application (Duration: 2.9ms | Allocations: 660)
+  Rendered layout layouts/application.html.erb (Duration: 15.4ms | Allocations: 2353)
+Completed 200 OK in 18ms (Views: 17.2ms | ActiveRecord: 0.0ms | Allocations: 2619)
+
+
+Started GET "/" for 127.0.0.1 at 2022-10-06 08:14:04 -0700
+Processing by AccessController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering access/home.html.erb within layouts/application
+  Rendered access/home.html.erb within layouts/application (Duration: 0.2ms | Allocations: 44)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 1847)
+Completed 200 OK in 13ms (Views: 10.9ms | ActiveRecord: 0.0ms | Allocations: 2244)
+
+
