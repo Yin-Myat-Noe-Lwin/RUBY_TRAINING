@@ -8,19 +8,19 @@ class ImagesController < ApplicationController
 
   def success
 
-    @image_name =  params[:image]
+    @image =  params[:image]
 
-    @folder_name =  params[:folder]
+    @folder =  params[:folder]
     
     begin
 
       #Create directory with user input
-      Dir.mkdir( 'app/assets/images/' + @folder_name.to_s )
+      Dir.mkdir( 'app/assets/images/' + @folder.to_s )
 
-      File.open( Rails.root.join('app/assets/images/' + @folder_name.to_s , @image_name.original_filename ), 'wb') do |file|
+      File.open( Rails.root.join('app/assets/images/' + @folder.to_s , @image.original_filename ), 'wb') do |file|
         
       #Put image into created directory
-      file.write( @image_name.read )
+      file.write( @image.read )
 
       end
 
