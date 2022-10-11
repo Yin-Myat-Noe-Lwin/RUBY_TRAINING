@@ -1,0 +1,7 @@
+<h1 class="header">File Reader</h1>
+
+<%= form_with url: "/show",  class: 'form' , method: :post do |form| %>
+  <%= form.label :query, "Upload a file(.txt/ .docx/ .xlsx/ .csv)" %><br><br>
+  <%= form.file_field :file , required: true %><br><br>
+  <%= form.submit "Read"  , class: 'read' %>
+<% end %>
