@@ -14,36 +14,36 @@ choice = gets.chomp.to_s
 
 if choice == "save"
 
-saved_file = "#{rand(1..100000)}.txt"
+  saved_file = "#{rand(1..100000)}.txt"
 
-# Creating a file
-new_file = File.new(saved_file , "w+");
+  # Creating a file
+  new_file = File.new(saved_file , "w+");
 
-# Writing user input to the file
-new_file.write title + $/
+  # Writing user input to the file
+  new_file.write title + $/
 
-new_file.write note 
+  new_file.write note 
 
-# Closing a file
-new_file.close();
+  # Closing a file
+  new_file.close();
 
-begin
+  begin
 
-  #Opening the saved file
-  open_file = File.open(saved_file, "r")
+    #Opening the saved file
+    open_file = File.open(saved_file, "r")
 
-  # Reading the saved file
-  data = open_file.read
+    # Reading the saved file
+    data = open_file.read
 
-  #Print the saved file data
-  puts data
+    #Print the saved file data
+    puts data
 
-  open_file.close()
-  
-rescue Exception => e
+    open_file.close()
+    
+  rescue Exception => e
 
-  print "file not found"
+    print "file not found"
 
-end
+  end
 
 end
