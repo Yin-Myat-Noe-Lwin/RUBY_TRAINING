@@ -1,0 +1,17 @@
+<h1 class="header">Log In</h1>
+
+<%= link_to '<button class="back">Back</button>'.html_safe, :back %>
+
+<div id="form">
+<%= form_tag access_path do %>
+  <div>
+    <%= label_tag :username %><br/> 
+    <%= text_field_tag "username",nil , class: "control", required: true, pattern: '^([a-zA-Z])+([\w]{2,})+$', placeholder: 'Enter username(at least 3 characters, no space allowed)' %>
+  </div>
+  <div>
+  <%= label_tag :email %><br/>
+  <%= email_field_tag :email,  params[:email] , class: 'control', :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' , placeholder: "Please enter valid email" %>
+  </div>
+  <button class="login form-login">Log in</button>
+<% end %>
+</div>
