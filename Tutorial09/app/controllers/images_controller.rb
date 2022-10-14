@@ -42,7 +42,7 @@ class ImagesController < ApplicationController
     #show flash message if input file is not image
     flash.alert = "Unsupported File Type"
 
-      redirect_to fail_url
+    redirect_to fail_url
 
   end
 
