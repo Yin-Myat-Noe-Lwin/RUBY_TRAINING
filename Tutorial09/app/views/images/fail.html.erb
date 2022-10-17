@@ -1,0 +1,7 @@
+<% flash.each do |type, msg| %>
+  <div class="msg">
+    <%= msg %>
+  </div>
+<% end %><br>
+
+<%= link_to '<button class="back">Back to Home</button>'.html_safe, root_path %>

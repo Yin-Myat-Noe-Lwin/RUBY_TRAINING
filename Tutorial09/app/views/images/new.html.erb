@@ -1,0 +1,15 @@
+<h1 class= "header">Add a new image</h1><br>
+
+<%= link_to '<button class="back form-back">back</button>'.html_safe, root_path %>
+
+<%= form_with url: "/success", class: 'form' , method: :post do |form| %>
+
+  <%= form.label :query, "Image:" %><br><br>
+  <%= form.file_field :image  ,required: true %><br><br>
+  
+  <%= form.label :query, "Folder name:" %><br>
+  <%= form.text_field :folder , class: 'control' , required: true   %><br><br>
+
+  <%= form.submit "Save Image" , class: 'save' %>
+  
+<% end %>
