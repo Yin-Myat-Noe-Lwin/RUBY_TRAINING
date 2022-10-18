@@ -68,7 +68,7 @@
 										</p>
 										<p>Email: <%= user.email %></p>
 										<p>Phone: <%= user.phone %></p>
-										<p>Date of Birth: <%= user.dob %></p>
+										<p>Date of Birth: <%= user.dob.strftime("%Y/%m/%d") %></p>
 										<p>Address: <%= user.address %></p>
 										<p>Created Date<%= user.created_at.strftime("%Y/%m/%d") %></p>
 										<p>Created User:
@@ -147,7 +147,7 @@
 										<p>Name: <%= user.name %></p>
 										<p>Email: <%= user.email %></p>
 										<p>Phone: <%= user.phone %></p>
-										<p>Date of Birth: <%= user.dob %></p>
+										<p>Date of Birth: <%= user.dob.strftime("%Y/%m/%d") %></p>
 										<p>Address: <%= user.address %></p>
 									</div>
 									<div class="modal-footer">
