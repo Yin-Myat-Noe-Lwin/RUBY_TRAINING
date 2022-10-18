@@ -1,0 +1,57 @@
+<h5 class="form-header">Create New User</h5>
+
+<% if  @user.errors.full_messages.any? %>
+
+  <% @user.errors.full_messages.each do |error_message| %>
+
+    <div> <ul class="form-msg"><li><%= "*"+error_message + "." %></li></ul></div>
+  
+    <% end %>
+
+<% end %>
+
+<div class="form">
+
+<%= form_with model: @user do |form| %>
+
+  <%= form.label :query, "Name" , class: "space"  %><br>
+  <%= form.text_field :name , class: "control"  %><br>
+
+  <%= form.label :query, "E-Mail Address"  , class: "space"  %><br>
+  <%= form.email_field :email , class: "control" %><br>
+
+  <%= form.label :query, "Password" , class: "space" %><br>
+  <%= form.password_field :password , class: "control" %><br>
+
+  <%= form.label :query, "Password confirmation", class: "space"  %><br>
+  <%= form.password_field :password_confirmation , class: "control" %><br>
+
+  <%= form.label :query, "Type" , class: "space" %><br>
+  <%= form.select :userType, [["Admin", "0"], ["User", "1"]] , class: "control" %><br>
+
+  <%= form.label :query, "Phone" , class:"space" %><br>
+  <%= form.text_field :phone , class: "control" %><br>
+
+  <%= form.label :query, "Date of birth" , class:"space" %><br>
+  <%= form.date_field :dob , class: "control" %><br>
+
+  <%= form.label :query, "Address" , class:"space" %><br>
+  <%= form.text_field :address , class: "control" %><br>
+
+  <%= form.label :query, "Profile" , class: "space" %><br>
+  <%= form.file_field :profile , accept:'image/*' , class: "file-control" %><br><br>
+
+  <%= form.label :query, "Create User ID" , class: "space"  %><br>
+  <% if current_user %>
+    <%= form.text_field :create_user_id , class: "control", value:current_user.id %><br><br>
+  <% else %>
+    <%= form.text_field :create_user_id , class: "control" %><br><br>
+  <% end %>
+
+  <%= form.submit "Create New User" , class: "space signup"   %>
+
+  <%= link_to "Back", users_path %>
+
+<% end %>
+
+</div>

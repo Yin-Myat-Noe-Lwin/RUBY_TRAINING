@@ -1,0 +1,21 @@
+<ul>
+
+<li><%= link_to "Home", root_path, class: current_class?(root_path)  %></li>
+
+<% if logged_in? %>
+
+  <li><%= link_to "Users", users_path , class: current_class?(users_path) %></li>
+
+  <li><%= link_to "Add a new user", new_user_path , class: current_class?(new_user_path) %></li>
+    
+  <li><%= link_to "logout", logout_path, method: :delete, class: current_class?(logout_path) %></li>
+  
+<% else %>
+    
+  <li><%= link_to "Signup", home_path , class: current_class?(home_path) %></li>
+    
+  <li><%= link_to "Login", board_path , class: current_class?(board_path) %></li>
+ 
+<% end %>
+
+</ul>
