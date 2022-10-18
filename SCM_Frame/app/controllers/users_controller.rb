@@ -69,42 +69,46 @@ class UsersController < ApplicationController
     end
 
   end
-
-  def edit
-
-    if logged_in?
-
-      @user = UserService.getUserByID(params[:id])
-  
-    else
-
-      redirect_to '/board'
-    
-    end
-
-  end
-
-  def update
-
-    if logged_in?
-
-      @user = UserService.getUserByID(params[:id])
-      
-      @is_user_update = UserService.updateUser(@user, user_params )
-
-      if @is_user_update
-
-        redirect_to users_path(@user)
-
-      end
-
-    else
-
-      redirect_to '/board'
-      
-    end
-
-  end
+#
+#  def edit
+#
+#    if logged_in?
+#
+#      @user = UserService.getUserByID(params[:id])
+#  
+#    else
+#
+#      redirect_to '/board'
+#    
+#    end
+#
+#  end
+#
+#  def update
+#
+#    if logged_in?
+#
+#      @user = UserService.getUserByID(params[:id])
+#      
+#      @is_user_update = UserService.updateUser(@user, update_params )
+#
+#      if @is_user_update
+#
+#        redirect_to users_path(@user)
+#
+#      else
+#
+#        flash.notice = "Something wrong"
+#
+#      end
+#
+#    else
+#
+#      redirect_to '/board'
+#      
+#    end
+#
+#  end
 
   def destroy
 
@@ -200,5 +204,11 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password , :password_confirmation, :profile, :userType ,:phone, :address, :dob, :create_user_id, :updated_user_id, :deleted_user_id, :deleted_at)
   
   end
+
+#  def update_params
+#
+#    params.require(:user).permit(:name, :email, :profile, :userType ,:phone, :address, :dob , :updated_user_id)
+#  
+#  end
 
 end

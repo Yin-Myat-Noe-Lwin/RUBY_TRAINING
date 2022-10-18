@@ -1,31 +1,31 @@
-<h4 class="form-header">User Detail</h4><br>
-
-<%= image_tag @user.profile , width: "200px" %><br>
-
-<p>Name: <%= @user.name %></p>
-
-<p>Type: 
-
-<% if @user.userType == "0" %>
-  <%= "Admin" %>
-<% else %>
-  <%= "User" %>
-<% end %>
-
-</p>
-
-<p>Email: <%= @user.email %></p>
-
-<p>Phone: <%= @user.phone %></p>
-
-<p>Date of birth: <%= @user.dob.strftime("%Y/%m/%d") %></p>
-
-<p>Address: <%= @user.address %></p>
-
-<p>Created Date: <%= @user.created_at.strftime("%Y/%m/%d") %></p>
-
-<p>Updated Date: <%= @user.updated_at.strftime("%Y/%m/%d") %></p>
-
-<%= link_to 'Update user', edit_user_path(@user), class: "signup", method: 'get'%>
-
-<%= link_to 'Back', users_path %>
+#<h4 class="form-header">User Detail</h4><br>
+#
+#<%= image_tag @user.profile , width: "200px" %><br>
+#
+#<p>Name: <%= @user.name %></p>
+#
+#<p>Type: 
+#
+#<% if @user.userType == "0" %>
+#  <%= "Admin" %>
+#<% else %>
+#  <%= "User" %>
+#<% end %>
+#
+#</p>
+#
+#<p>Email: <%= @user.email %></p>
+#
+#<p>Phone: <%= @user.phone %></p>
+#
+#<p>Date of birth: <%= @user.dob.strftime("%Y/%m/%d") %></p>
+#
+#<p>Address: <%= @user.address %></p>
+#
+#<p>Created Date: <%= @user.created_at.strftime("%Y/%m/%d") %></p>
+#
+#<p>Updated Date: <%= @user.updated_at.strftime("%Y/%m/%d") %></p>
+#
+#<%= link_to 'Update user', edit_user_path(@user), class: "signup", method: 'get'%>
+#
+#<%= link_to 'Back', users_path %>
