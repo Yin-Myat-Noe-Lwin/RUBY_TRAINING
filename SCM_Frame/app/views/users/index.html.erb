@@ -25,10 +25,8 @@
 			<th>Created_date</th>
 
 			<th>Updated_date</th>
-			
-			<th>Edit</th>
 
-			<th>Delete</th>
+			<th>Action</th>
 
 		</thead>
 
@@ -124,8 +122,6 @@
 						<td><%= user.created_at.strftime("%Y/%m/%d") %></td>
 
 						<td><%= user.updated_at.strftime("%Y/%m/%d") %></td>
-
-						<td> <%= link_to 'Edit', edit_user_path(user), class: "btn btn-primary", method: 'get'%> </td>
 						
 						<td>
 						
