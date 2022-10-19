@@ -23,9 +23,6 @@
   <%= form.label :query, "Password" , class: "space" %><br>
   <%= form.password_field :password , class: "control" %><br>
 
-  <%= form.label :query, "Password confirmation", class: "space"  %><br>
-  <%= form.password_field :password_confirmation , class: "control" %><br>
-
   <%= form.label :query, "Type" , class: "space" %><br>
   <%= form.select :userType, [["Admin", "0"], ["User", "1"]] , class: "control" %><br>
 
@@ -39,7 +36,7 @@
   <%= form.text_field :address , class: "control" %><br>
 
   <%= form.label :query, "Profile" , class: "space" %><br>
-  <%= form.file_field :profile , accept:'image/*' , class: "file-control" %><br><br>
+  <%= form.file_field :userProfile , accept:'image/*' , class: "file-control" %><br><br>
 
   <%= form.label :query, "Create User ID" , class: "space"  %><br>
   <% if current_user %>

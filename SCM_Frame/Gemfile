@@ -16,6 +16,7 @@ gem 'jquery-datatables', '~> 1.10', '>= 1.10.15'
 gem 'bootstrap', '~> 5.2', '>= 5.2.1'
 gem 'client_side_validations'
 gem 'data-confirm-modal'
+gem 'csv', '~> 3.0'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

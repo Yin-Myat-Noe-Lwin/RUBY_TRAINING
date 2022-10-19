@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  require 'rubygems'
+
+  require 'csv'
+
   def index
 
     @add = 0
@@ -35,6 +39,21 @@ class UsersController < ApplicationController
     if logged_in?
 
       @user = User.new(user_params)
+
+      @upload = params[:user][:userProfile]
+
+    if (@upload)
+
+      File.open( Rails.root.join('app/assets', 'images', @upload.original_filename), 'wb') do |file|
+                
+      file.write( @upload.read )
+
+      @user.userProfile =  @upload.original_filename
+        
+      end
+
+    end
+
 
       @is_user_create = UserService.createUser(@user)
 
@@ -134,12 +153,29 @@ class UsersController < ApplicationController
   end
 
   def signup
-    
+
     @user = User.new(user_params)
-  
+
+    @upload = params[:user][:userProfile]
+
+    if (@upload)
+
+      File.open( Rails.root.join('app/assets', 'images', @upload.original_filename), 'wb') do |file|
+                
+      file.write( @upload.read )
+
+      @user.userProfile =  @upload.original_filename
+        
+
+      end
+
+    end
+
     @is_user_create = UserService.createUser(@user)
 
     if @is_user_create
+
+      
 
       flash.notice = "Sign up Finished"
 
@@ -197,18 +233,70 @@ class UsersController < ApplicationController
 
   end
 
+  def export
+
+  begin
+
+    @exportFile = "#{Rails.root}/public/#{rand(1..100000)}.csv"
+
+    @users = User.order(:name)
+
+    @headers = ["User ID", "Name", "Email", "User Type", "Phone","Address","Date of Birth"]
+
+    CSV.open(@exportFile, 'w', write_headers: true, headers: @headers) do |writer|
+    
+    @users.each do |user| 
+    
+      writer << [user.id, user.name, user.email,user.userType,user.phone,user.address,user.dob] 
+    
+    end
+
+    flash.notice = "Export Successful"
+
+  rescue Exception=>e
+
+    flash.alert = "Something went wrong"
+
+    redirect_to users_url
+
+  end
+
+  end
+
+  end
+
+  def formImport
+
+  end
+
+  def import
+
+    begin
+
+    @file = params[:importFile]
+
+    CsvImportUsersService.new.call(@file)
+   
+    flash.notice = "Import Success"
+
+    redirect_to users_url
+
+  rescue Exception=>e
+
+    flash.alert = e
+
+    redirect_to users_url
+
+  end
+
+  end
+
   private 
 
   def user_params
 
-    params.require(:user).permit(:name, :email, :password , :password_confirmation, :profile, :userType ,:phone, :address, :dob, :create_user_id, :updated_user_id, :deleted_user_id, :deleted_at)
+   params.require(:user).permit(:name, :email, :password , :userProfile , :userType ,:phone, :address, :dob, :create_user_id, :updated_user_id, :deleted_user_id, :deleted_at)
   
   end
-
-#  def update_params
-#
-#    params.require(:user).permit(:name, :email, :profile, :userType ,:phone, :address, :dob , :updated_user_id)
-#  
-#  end
 
 end

@@ -1,8 +1,8 @@
 require 'bcrypt'
 
 class User < ApplicationRecord
-
-  has_one_attached :profile
+  
+  #has_one_attached :profile
   
   validates_presence_of :name
   validates_uniqueness_of :name, :case_sensitive => false
@@ -12,10 +12,12 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   validates_uniqueness_of :email, :case_sensitive => false
 
-  has_secure_password
+  #has_secure_password
+  validates_presence_of :password
+  validates_uniqueness_of :password, :case_sensitive => false
   validates :password, :length => { :in => 6..30}
 
-  validates_presence_of :profile
+  validates_presence_of :userProfile
 
   before_create { generate_token(:remember_token)}
 
