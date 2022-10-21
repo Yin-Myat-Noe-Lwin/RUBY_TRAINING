@@ -1,0 +1,9 @@
+<% if logged_in? %>
+
+  <h5 class="form-header">You are now logged in as <%= current_user.name %></h5>
+
+<% else %>
+
+  <h5 class="form-header">Welcome!!!</h5>
+  
+<% end %>
