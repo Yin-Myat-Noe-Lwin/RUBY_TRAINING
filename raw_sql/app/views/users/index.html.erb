@@ -1,0 +1,190 @@
+<h5 class="form-header">User List</h5>
+
+<div class="rt-sec">
+
+	<%= button_to 'Upload', import_path, method: :get , class: "btn btn-success" %>
+	
+	<%= button_to 'Export', export_path, method: :get , class: "btn btn-success" %>
+
+</div>
+
+<div class="container">
+
+	<table id="example" class='table table-striped table-sm'>
+
+		<thead>
+
+		<th>No</th>
+
+		<th>Name</th>
+
+		<th>Email</th>
+
+		<th>Created User</th>
+
+		<th>Type</th>
+
+		<th>Phone</th>
+
+		<th>Date of birth</th>
+
+		<th>Address</th>
+
+		<th>Created_date</th>
+
+		<th>Updated_date</th>
+
+		<th>Action</th>
+
+		</thead>
+
+		<tbody>
+
+		<% @users.each do |user| %>
+
+			<tr>
+			<td><%= @add = @add + 1 %></td>
+			<td>
+			<p onclick="confirmViewModal(<%= user[0] %>)"><%= user[1] %></p>
+
+						<!-- View Modal -->
+
+						<div class="modal fade" id="viewModal<%=user[0]%>" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+								<div class="modal-header">
+										<h5 class="modal-title" id="viewModalLabel">User Confirm</h5>
+										<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+							
+									<%= image_tag(user[14], :alt => "rss feed" , class: 'profile-img' ) %>
+								
+									<div class="detail">	
+									<p>Name: <%= user[1] %></p>
+										<p>Type:
+										<% if user[3] == "0" %>
+											<%= "Admin" %>
+										<% else %>
+											<%= "User" %>
+										<% end %>
+										</p>
+										<p>Email: <%= user[2] %></p>
+										<p>Phone: <%= user[4] %></p>
+										<p>Date of Birth: <%= user[6].strftime("%Y/%m/%d") %></p>
+										<p>Address: <%= user[5] %></p>
+										<p>Created Date<%= user[10].strftime("%Y/%m/%d") %></p>
+										<p>Created User:
+										<% @check =  ActiveRecord::Base.connection.execute("SELECT name FROM users WHERE id = #{user[7]}") %>
+										<% if @check.size == 1 %>
+										<% @check.each do |val| %>
+											<%= val.join(', ') %>
+									<% end %>
+										<% else %>
+										<%= '-' %>
+										<% end %></p>
+									<p>Updated Date:<%= user[11].strftime("%Y/%m/%d") %></p>
+									<p>Updated User:
+									<% @check =  ActiveRecord::Base.connection.execute("SELECT name FROM users WHERE id = #{user[8]}") %>
+									<% if @check.size == 1 %>
+									<% @check.each do |val| %>
+										<%= val.join(', ') %>
+								<% end %>
+									<% else %>
+									<%= '-' %>
+									<% end %></p>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" id="stop" data-bs-dismiss="modal">Close</button>
+										</div>
+								</div>
+							</div>
+						</div>
+			</td>
+			<td><%= user[2] %></td>
+			<td>
+			<% @check =  ActiveRecord::Base.connection.execute("SELECT name FROM users WHERE id = #{user[7]}") %>
+			<% if @check.size == 1 %>
+			<% @check.each do |val| %>
+				<%= val.join(', ') %>
+		 <% end %>
+			<% else %>
+			<%= '-' %>
+			<% end %>
+			</td>
+			<td>
+			<% if user[3] == "0" %>
+							<%= "Admin" %>
+			<% else %>
+							<%= "User" %>
+				<% end %>
+			</td>
+			<td><%= user[4] %></td>
+			<td><%= user[6].strftime("%Y/%m/%d") %></td>
+			<td><%= user[5] %></td>
+			<td><%= user[10].strftime("%Y/%m/%d") %></td>
+			<td><%= user[11].strftime("%Y/%m/%d") %></td>
+			<td><button class="btn btn-danger deletebtn" onclick="confirmDeleteModal(<%=  user[0] %>)" >Delete</button>
+			<!-- Delete Modal -->
+						<div class="modal fade" id="exampleModal<%=user[0]%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+										<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p> Are you sure to delete this user? </p>
+										<p>ID: <%= user[0] %></p>
+										<p>Name: <%= user[1] %></p>
+										<p>Email: <%= user[2] %></p>
+										<p>Phone: <%= user[4] %></p>
+										<p>Date of Birth: <%= user[6].strftime("%Y/%m/%d") %></p>
+										<p>Address: <%= user[5] %></p>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" id="no" data-bs-dismiss="modal">Cancel</button>
+										<%= link_to 'Delete', user_path(user[0]), class:"btn btn-danger sure", method: 'delete' , onclick:"stopModal(#{user[0]})" %>
+										
+										</div>
+								</div>
+							</div>
+						</div>
+
+			</td>
+			</tr>
+
+		<% end %>
+
+			</tbody>
+
+	</table>
+
+</div>
+
+<script type="text/javascript">
+
+function confirmDeleteModal(id){
+
+  $('#exampleModal'+id).modal('show');
+
+}    
+
+function stopModal(id){
+	
+	$('#exampleModal'+id).modal('hide');
+	
+} 
+  
+function confirmViewModal(id){
+
+  $('#viewModal'+id).modal('show');
+
+} 
+
+</script>
