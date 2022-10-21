@@ -1,0 +1,12 @@
+<h5 class="form-header">Upload File into sql database</h5>
+
+<%= form_with url: "/import", class: 'form' , method: :post  do |form| %>
+
+  <%= form.label :query, "File:" %><br>
+  <%= form.file_field :importFile  %><br>
+
+  <%= form.submit "Upload"  %>
+  
+<% end %>
+
+<%= link_to 'Back', users_path  , class: 'btn btn-primary' %>

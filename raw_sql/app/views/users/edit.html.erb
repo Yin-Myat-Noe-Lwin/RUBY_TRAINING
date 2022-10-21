@@ -1,0 +1,44 @@
+#<h5 class="form-header">Profile Edit</h5>
+#
+#<div class="form">
+#
+#<%= form_with model: @user  do |form| %>
+#
+#  <%= form.label :query, "Name" , class: "space"  %><br>
+#  <%= form.text_field :name , class: "control"  %><br>
+#
+#  <%= form.label :query, "E-Mail Address"  , class: "space"  %><br>
+#  <%= form.email_field :email , class: "control" %><br>
+#
+#  <%= form.label :query, "Type" , class: "space" %><br>
+#  <%= form.select :userType, [["Admin", "0"], ["User", "1"]] , class: "control" %><br>
+#
+#  <%= form.label :query, "Phone" , class:"space" %><br>
+#  <%= form.text_field :phone , class: "control" %><br>
+#
+#  <%= form.label :query, "Date of birth" , class:"space" %><br>
+#  <%= form.date_field :dob , class: "control" %><br>
+#
+#  <%= form.label :query, "Address" , class:"space" %><br>
+#  <%= form.text_field :address , class: "control" %><br>
+#
+#  <%= form.label :query, "Old Profile" , class: "space" %><br>
+#  <%= image_tag @user.profile , width: "200px" ,class: "space" %><br><br><br>
+#
+#  <%= form.label :query, "New Profile" , class: "space" %><br>
+#  <%= form.file_field :profile , accept:'image/*' , class: "file-control" %><br><br>
+#
+#  <%= form.label :query, "Update User ID" , class: "space"  %><br>
+#  <% if current_user %>
+#    <%= form.text_field :updated_user_id, class: "control", value:current_user.id %><br><br>
+#  <% else %>
+#    <%= form.text_field :updated_user_id , class: "control" %><br><br>
+#  <% end %>
+#
+#  <%= form.submit "Update"  , class: "space signup"   %>
+#
+#  <%= form.submit "Clear" ,  id: "removeData"  %>
+#
+#<% end %>
+#
+#</div>

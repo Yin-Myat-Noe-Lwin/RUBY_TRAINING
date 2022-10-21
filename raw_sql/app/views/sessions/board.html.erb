@@ -1,0 +1,24 @@
+<h5 class="form-header">Log in</h5>
+
+<div class="form">
+
+<%= form_with scope:"session", url: "/board", method: 'post' do |form| %>
+ 
+  <%= form.label :query, "E-Mail Address:"  , class: "space"  %>
+  <%= form.email_field :email , class: "control" %><br>
+
+  <%= form.label :query, "Password:" , class: "space" %>
+  <%= form.password_field :password , class: "control" %><br>
+
+  <%= form.check_box :remember_me , class:"space" %> 
+  <%= form.label :query, "Remember me" %>
+  
+  <%= link_to "forgotten password?", reset_path , id: "fgt-space" , class: 'non-line' %><br>
+
+  <%= form.submit "Login" , id: "login-space", class: "login " %>
+
+<% end %>
+
+<%= link_to "Create account?", home_path , id: "create-space" , class: 'non-line' %>
+
+</div>
