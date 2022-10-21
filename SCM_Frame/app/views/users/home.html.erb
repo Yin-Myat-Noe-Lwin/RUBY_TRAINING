@@ -1,13 +1,11 @@
 <h5 class="form-header">Register</h5>
 
 <% if  @user.errors.full_messages.any? %>
-
   <% @user.errors.full_messages.each do |error_message| %>
 
     <div> <ul class="form-msg"><li><%= "*"+error_message + "." %></li></ul></div>
   
-  <% end %>
-
+    <% end %>
 <% end %>
 
 <div class="form">

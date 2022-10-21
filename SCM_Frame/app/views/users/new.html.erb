@@ -1,19 +1,16 @@
 <h5 class="form-header">Create New User</h5>
 
 <% if  @user.errors.full_messages.any? %>
-
   <% @user.errors.full_messages.each do |error_message| %>
 
     <div> <ul class="form-msg"><li><%= "*"+error_message + "." %></li></ul></div>
   
     <% end %>
-
 <% end %>
 
 <div class="form">
 
 <%= form_with model: @user do |form| %>
-
   <%= form.label :query, "Name" , class: "space"  %><br>
   <%= form.text_field :name , class: "control"  %><br>
 
@@ -44,11 +41,8 @@
   <% else %>
     <%= form.text_field :create_user_id , class: "control" %><br><br>
   <% end %>
-
   <%= form.submit "Create New User" , class: "space signup"   %>
-
   <%= link_to "Back", users_path %>
-
 <% end %>
 
 </div>
