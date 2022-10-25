@@ -1,0 +1,47 @@
+<div class="modal-body">
+
+  <%= image_tag(user.userProfile, :alt => "rss feed" , class: 'profile-img' ) %>
+        
+  <p>Name: <%= user.name %></p>
+
+  <p>Type:
+    <% if user.userType == "0" %>
+      <%= "Admin" %>
+    <% else %>
+      <%= "User" %>
+    <% end %>
+  </p>
+
+  <p>Email: <%= user.email %></p>
+
+  <p>Phone: <%= user.phone %></p>
+
+  <p>Date of Birth: <%= user.dob.strftime("%Y/%m/%d") %></p>
+
+  <p>Address: <%= user.address %></p>
+
+  <p>Created Date<%= user.created_at.strftime("%Y/%m/%d") %></p>
+
+  <p>Created User:
+    <% if @user = User.find_by_id(user.create_user_id) %>
+      <%= @user.name %>
+    <% else %>
+      <%= "-" %>
+    <% end %>
+  </p>
+
+  <p>Updated Date:<%= user.updated_at.strftime("%Y/%m/%d") %></p>
+  
+  <p>Updated User:
+    <% if @user = User.find_by_id(user.updated_user_id) %>
+      <%= @user.name %>
+    <% else %>
+      <%= "-" %>
+    <% end %>
+  </p>
+
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+</div>

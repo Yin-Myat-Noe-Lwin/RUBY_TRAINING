@@ -18,8 +18,6 @@ Rails.application.routes.draw do
 
   post '/reset' => "users#resetPassword"
 
-  get '/export' => 'users#export'
-
   get '/import' => 'users#formImport'
 
   post '/import' => 'users#import'

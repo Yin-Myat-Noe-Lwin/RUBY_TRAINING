@@ -6,18 +6,26 @@ class UsersController < ApplicationController
 
   def index
 
-    @add = 0
-
     if logged_in?
 
       @users = UserService.getAllUsers
 
+      respond_to do |format|
+
+        format.html
+
+        format.csv { send_data @users.to_csv }
+
+      end
+
     else
 
+      flash.alert = "Please login"
+    
       redirect_to '/board'
-
+    
     end
-
+    
   end
 
   def new
@@ -27,6 +35,8 @@ class UsersController < ApplicationController
       @user = User.new
 
     else
+
+      flash.alert = "Please login"
 
       redirect_to '/board'
 
@@ -42,32 +52,78 @@ class UsersController < ApplicationController
 
       @upload = params[:user][:userProfile]
 
-    if (@upload)
+      if (@upload)
 
-      File.open( Rails.root.join('app/assets', 'images', @upload.original_filename), 'wb') do |file|
-                
-      file.write( @upload.read )
+        File.open( Rails.root.join('app/assets', 'images', @upload.original_filename), 'wb') do |file|
+                  
+        file.write( @upload.read )
 
-      @user.userProfile =  @upload.original_filename
+        @user.userProfile =  @upload.original_filename
+          
+        end
+
+      end
+
+      @is_user_create = UserService.createUser(@user)
+
+      respond_to do |format|
+
+        @errorName = []
+
+        @errorEmail = []
+
+        @errorPsw = []
+
+        @errorPswConfirm = []
+
+        @errorPf = []
+
+        if @is_user_create
+
+          format.js
+
+        else
+
+        format.js
+
+        @user.errors.any?
+
+        if (@user.errors["name"] != nil)
+
+          @errorName.push(@user.errors["name"][0])
+
+        end
+
+        if (@user.errors["email"] != nil)
+
+          @errorEmail.push(@user.errors["email"][0])
+
+        end
+
+        if (@user.errors["password"] != nil)
+
+          @errorPsw.push(@user.errors["password"][0])
+
+        end
         
+        if (@user.errors["password_confirmation"] != nil)
+
+          @errorPswConfirm.push(@user.errors["password_confirmation"][0])
+        end
+          
+        if (@user.errors["userProfile"] != nil)
+          
+          @errorPf.push(@user.errors["userProfile"][0])
+        
+        end
+
       end
 
     end
 
-
-      @is_user_create = UserService.createUser(@user)
-
-      if @is_user_create
-
-        redirect_to users_path
-
-      else
-
-        render 'new'
-
-      end
-
     else
+
+      flash.alert = "Please login"
 
       redirect_to '/board'
 
@@ -82,6 +138,8 @@ class UsersController < ApplicationController
       @user = UserService.getUserByID(params[:id])
 
     else
+
+      flash.alert = "Please login"
 
       redirect_to '/board'
     
@@ -137,7 +195,15 @@ class UsersController < ApplicationController
 
       UserService.destroyUser(@user)
 
+      respond_to do |format|
+
+        format.js
+        
+      end
+
     else
+
+      flash.alert = "Please login"
 
       redirect_to '/board'
       
@@ -166,26 +232,25 @@ class UsersController < ApplicationController
 
       @user.userProfile =  @upload.original_filename
         
-
       end
 
     end
 
-    @is_user_create = UserService.createUser(@user)
+      @is_user_create = UserService.createUser(@user)
 
-    if @is_user_create
+      if @is_user_create
 
-      
+        UserMailer.signup_confirmation(@user).deliver_now
 
-      flash.notice = "Sign up Finished"
+        flash.notice="Sign up successful" 
 
-      redirect_to root_path
+        redirect_to root_path
 
-    else
+      else
 
-      render 'home'
-      
-    end
+        render 'home'
+
+      end
 
   end
 
@@ -201,23 +266,27 @@ class UsersController < ApplicationController
 
     @user = UserService.findByEmail(email: params[:email])
 
+    @new_password = params[:password]
+
+    @new_password_confirm = params[:password_confirmation]
+
     if @user 
 
-      if !params[:password].nil?  && !params[:password_confirmation].nil?
+      if !@new_password.nil?  && !@new_password_confirm.nil? && @new_password == @new_password_confirm
 
-          @user.password = params[:password]
+        @user.password = @new_password
           
-          @user.password_confirmation = params[:password_confirmation]
+        @user.password_confirmation = @new_password_confirm
           
-          @user.save
+        @user.save
           
-          flash.notice="Reset password successfully" 
+        flash.notice="Reset password successfully" 
 
-          redirect_to root_path
+        redirect_to root_path
 
       else
 
-        flash.alert= "Please enter new password"
+        flash.alert= "Please enter both new password and new password confirmation.(Both fields must match.)"
 
         render 'reset'
 
@@ -233,38 +302,6 @@ class UsersController < ApplicationController
 
   end
 
-  def export
-
-  begin
-
-    @exportFile = "#{Rails.root}/public/#{rand(1..100000)}.csv"
-
-    @users = User.order(:name)
-
-    @headers = ["User ID", "Name", "Email", "User Type", "Phone","Address","Date of Birth"]
-
-    CSV.open(@exportFile, 'w', write_headers: true, headers: @headers) do |writer|
-    
-    @users.each do |user| 
-    
-      writer << [user.id, user.name, user.email,user.userType,user.phone,user.address,user.dob] 
-    
-    end
-
-    flash.notice = "Export Successful"
-
-  rescue Exception=>e
-
-    flash.alert = "Something went wrong"
-
-    redirect_to users_url
-
-  end
-
-  end
-
-  end
-
   def formImport
 
   end
@@ -273,21 +310,21 @@ class UsersController < ApplicationController
 
     begin
 
-    @file = params[:importFile]
+      @file = params[:importFile]
 
-    CsvImportUsersService.new.call(@file)
-   
-    flash.notice = "Import Success"
+      CsvImportUsersService.new.call(@file)
+    
+      flash.notice = "Import Success"
 
-    redirect_to users_url
+      redirect_to users_url
 
-  rescue Exception=>e
+    rescue Exception=>e
 
-    flash.alert = e
+      flash.alert = "Something went wrong!!!"
 
-    redirect_to users_url
+      redirect_to users_url
 
-  end
+    end
 
   end
 
@@ -295,7 +332,7 @@ class UsersController < ApplicationController
 
   def user_params
 
-   params.require(:user).permit(:name, :email, :password , :userProfile , :userType ,:phone, :address, :dob, :create_user_id, :updated_user_id, :deleted_user_id, :deleted_at)
+   params.require(:user).permit(:name, :email, :password , :password_confirmation, :userProfile , :userType ,:phone, :address, :dob, :create_user_id, :updated_user_id, :deleted_user_id, :deleted_at)
   
   end
 

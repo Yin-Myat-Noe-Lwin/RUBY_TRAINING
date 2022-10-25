@@ -3,10 +3,9 @@
 <%= form_with url: "/import", class: 'form' , method: :post  do |form| %>
 
   <%= form.label :query, "File:" %><br>
-  <%= form.file_field :importFile  %><br>
+  <%= form.file_field :importFile  %><br><br>
 
-  <%= form.submit "Upload"  %>
+  <%= form.submit "Upload" , class: 'cmn-btn'  %>
+  <%= link_to 'Back', users_path  , class: 'btn btn-default' , id: 'back-btn' %>
   
 <% end %>
-
-<%= link_to 'Back', users_path  , class: 'btn btn-primary' %>

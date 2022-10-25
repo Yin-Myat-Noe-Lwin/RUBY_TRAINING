@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     @user = UserService.findByEmail(email: params[:session][:email])
 
-    if @user  
+    if @user  && (@user.password == params[:session][:password])
 
       session[:user_id] = @user.id
       

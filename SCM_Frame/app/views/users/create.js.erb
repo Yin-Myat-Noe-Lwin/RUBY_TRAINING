@@ -1,0 +1,21 @@
+<% if @user.errors.any? %>
+
+  $(".message").remove();
+
+  $("#nameBlock").append('<div class="message"><%= escape_javascript(@errorName[0])%></div>');
+
+  $("#emailBlock").append('<div class="message"><%= escape_javascript( @errorEmail[0])%></div>');
+
+  $("#pswBlock").append('<div class="message"><%= escape_javascript( @errorPsw[0])%></div>');
+
+  $("#pswConfirmBlock").append('<div class="message"><%= escape_javascript( @errorPswConfirm[0])%></div>');
+
+  $("#pfBlock").append('<div class="message"><%= escape_javascript(@errorPf[0])%></div>');
+
+<% else %>
+
+  $('#tableBody').append("<%= escape_javascript render('user_row', user: @user) %>");
+
+  $('.no-modal').click();
+
+<% end %>

@@ -5,18 +5,31 @@ ruby "3.1.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
+
 gem "bcrypt"
+
 gem 'devise'
+
 gem 'jquery-rails', '~> 4.4'
+
 gem 'turbolinks', '~> 2.5', '>= 2.5.3'
+
 gem 'sassc-rails'
+
 gem 'uglifier', '~> 2.7', '>= 2.7.2'
+
 gem 'coffee-rails', '~> 5.0'
+
 gem 'jquery-datatables', '~> 1.10', '>= 1.10.15'
+
 gem 'bootstrap', '~> 5.2', '>= 5.2.1'
+
 gem 'client_side_validations'
+
 gem 'data-confirm-modal'
+
 gem 'csv', '~> 3.0'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 

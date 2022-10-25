@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_19_080441) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_25_185815) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -70,6 +70,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_080441) do
     t.string "remember_token"
     t.string "userProfile", null: false
     t.string "password", null: false
+    t.string "password_confirmation"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

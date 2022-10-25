@@ -42,8 +42,12 @@ class CsvImportUsersService
 
       @user_hash[:password] = row['password']
 
+      @user_hash[:password_confirmation] = row['password_confirmation']
+
       User.find_or_create_by!(@user_hash)
 
     end
+
   end
+  
 end

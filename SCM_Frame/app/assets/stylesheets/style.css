@@ -11,8 +11,8 @@
 }
 
 .form {
-  padding: 10px 23%;
 
+  padding: 10px 23%;
   border-radius: 5px;
 
 }
@@ -54,6 +54,10 @@ select {
   box-sizing: border-box;
   border-radius: 4px;
 
+}
+
+.form-select-space {
+  margin-left: 0px;
 }
 
 .signup {
@@ -178,7 +182,7 @@ li a:hover {
 
 .active {
 
-  background-color: red;
+  background-color: #ed0e0e ;
   color: #FFF;
   font-weight: 600;
   opacity: 1;
@@ -192,7 +196,7 @@ li a:hover {
   padding: 12px 20px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-  background: #e60808;
+  background: #ed0e0e;
   color: #FFF;
   border-radius: 4px;
 
@@ -214,7 +218,7 @@ li a:hover {
 .message {
 
   padding: 2px 5px;
-  color: red;
+  color: #ed0e0e;
 
 }
 
@@ -226,20 +230,25 @@ div.field_with_errors div.ui-effects-wrapper {
 
 .field_with_errors input {
 
-  border: 2px solid red;
+  border: 2px solid #ed0e0e;
 }
 
 .field_with_errors label {
 
-  color: red;
+  color: #ed0e0e;
   font-weight: bold;
 
+}
+
+.some-class {
+
+  border-color: #ed0e0e;
 }
 
 .form-msg {
 
   background-color: white;
-  color: red;
+  color: #ed0e0e;
   text-align: left;
 
 }
@@ -278,7 +287,7 @@ div.field_with_errors div.ui-effects-wrapper {
 
 .profile-img {
 
-  float: left;
+  float: right;
   width: 200px;
 
 }
@@ -290,7 +299,7 @@ div.field_with_errors div.ui-effects-wrapper {
 
 }
 
-.rt-sec {
+.btn-sec {
 
   float: right;
   margin-top: 10px;
@@ -299,8 +308,48 @@ div.field_with_errors div.ui-effects-wrapper {
 
 }
 
-.upload-file {
+.cmn-btn {
 
-  margin-right: 20px;
+  padding: 6px 20px;
+  border: none;
+  background: #346d39;
+  color: #FFF;
+  cursor: pointer;
+  border-radius: 4px;
+
+}
+
+.cmn-btn:hover {
+
+  background: #FFF;
+  color: #346d39;
+
+}
+
+#upload {
+
+  margin-bottom: 10px;
+
+}
+
+#download {
+
+  text-decoration: none;
+
+}
+
+#back-btn {
+
+  margin-left: 2%;
+
+}
+
+
+#new-user {
+
+  float: left;
+  margin-top: 10px;
+  margin-left: 130px;
+  text-decoration: none;
 
 }

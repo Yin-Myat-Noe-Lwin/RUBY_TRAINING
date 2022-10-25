@@ -1,0 +1,77 @@
+<%= form_with model: @user , local: false do |form| %>
+
+  <div class="modal-body">
+
+    <% if  @user.errors.full_messages.any? %>
+      <% @user.errors.full_messages.each do |error_message| %>
+        <div> <ul class="form-msg"><li><%= "*"+error_message + "." %></li></ul></div>
+      <% end %>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :query, "Name"  %>
+      <%= form.text_field :name , class:"form-control"  %>
+      <span id = "nameBlock"></span>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :query, "E-Mail Address"    %>
+      <%= form.email_field :email  , class:"form-control" %>
+      <span id = "emailBlock"></span>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :query, "Password"  %>
+      <%= form.password_field :password , class:"form-control" %>
+      <span id = "pswBlock"></span>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :query, "Password Confirmation" %>
+      <%= form.password_field :password_confirmation, class:"form-control" %>
+      <span id = "pswConfirmBlock"></span>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :query, "Type"  %>
+      <%= form.select :userType, [["Admin", "0"], ["User", "1"]] , {},  class:"form-control form-select-space" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :query, "Phone"  %>
+      <%= form.text_field :phone , class:"form-control"  %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :query, "Date of birth"  %>
+      <%= form.date_field :dob , class:"form-control"  %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :query, "Address"  %>
+      <%= form.text_field :address , class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :query, "Profile"  %>
+      <%= form.file_field :userProfile , accept:'image/*' , class:"form-control-file"%>
+      <span id = "pfBlock"></span>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :query, "Create User ID"  %>
+      <% if current_user %>
+        <%= form.text_field :create_user_id , value:current_user.id ,  class:"form-control"%>
+      <% else %>
+        <%= form.text_field :create_user_id  , class:"form-control" %>
+      <% end %>
+    </div>
+
+  </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary no-modal" data-bs-dismiss="modal">Close</button>
+      <%= form.submit "Create New User" , class: "btn btn-success"    %>
+    </div>
+
+<% end %>

@@ -1,10 +1,17 @@
 <h5 class="form-header">User List</h5>
 
-<div class="rt-sec">
+<div>
 
-	<%= button_to 'Upload', import_path, method: :get , class: "btn btn-success" %>
-	
-	<%= button_to 'Export', export_path, method: :get , class: "btn btn-success" %>
+	<%= link_to "New user", new_user_path  , class: 'cmn-btn',
+	id:'new-user', data:{bs_toggle: 'modal', bs_target: '#newUserModal', remote: true} %>
+
+	<div  class="btn-sec">
+
+		<%= button_to 'Upload', import_path, method: :get , class: 'cmn-btn' , id: 'upload' %>
+		
+		<%= link_to "Download", users_path(format: "csv") , class: 'cmn-btn' , id: 'download' %>
+
+	</div>
 
 </div>
 
@@ -13,8 +20,6 @@
 	<table id="example" class='table table-striped table-sm'>
 
 		<thead>
-
-			<th>No</th>
 
 			<th>Name</th>
 
@@ -34,165 +39,68 @@
 
 			<th>Updated_date</th>
 
-			<th>Action</th>
+			<th>Delete</th>
 
 		</thead>
 
-		<tbody>
+		<tbody id="tableBody">
 
 			<% @users.each do |user| %>
 				
-					<tr>
-
-						<td><%= @add = @add + 1 %></td>
-						
-						<td>
-
-						<p onclick="confirmViewModal(<%= user.id %>)"><%= user.name %></p>
-
-						<!-- View Modal -->
-
-						<div class="modal fade" id="viewModal<%=user.id%>" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-								<div class="modal-header">
-										<h5 class="modal-title" id="viewModalLabel">User Confirm</h5>
-										<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-							
-									<%= image_tag(user.userProfile, :alt => "rss feed" , class: 'profile-img' ) %>
-								
-									<div class="detail">	
-									<p>Name: <%= user.name %></p>
-										<p>Type:
-										<% if user.userType == "0" %>
-											<%= "Admin" %>
-										<% else %>
-											<%= "User" %>
-										<% end %>
-										</p>
-										<p>Email: <%= user.email %></p>
-										<p>Phone: <%= user.phone %></p>
-										<p>Date of Birth: <%= user.dob.strftime("%Y/%m/%d") %></p>
-										<p>Address: <%= user.address %></p>
-										<p>Created Date<%= user.created_at.strftime("%Y/%m/%d") %></p>
-										<p>Created User:
-										<% if @user = User.find_by_id(user.create_user_id) %>
-											<%= @user.name %>
-										<% else %>
-											<%= "-" %>
-										<% end %>
-										</p>
-									<p>Updated Date:<%= user.updated_at.strftime("%Y/%m/%d") %></p>
-										<p>Updated User:
-										<% if @user = User.find_by_id(user.updated_user_id) %>
-											<%= @user.name %>
-									<% else %>
-										<%= "-" %>
-									<% end %>
-										</p>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" id="stop" data-bs-dismiss="modal">Close</button>
-										</div>
-								</div>
-							</div>
-						</div>
-						
-						</td>
-
-						<td><%= user.email %></td>
-
-						<td>
-						<% if @user = User.find_by_id(user.create_user_id) %>
-							<%= @user.name %>
-						<% else %>
-							<%= "-" %>
-						<% end %>
-						</td>
-
-						<td>
-						<% if user.userType == "0" %>
-							<%= "Admin" %>
-						<% else %>
-							<%= "User" %>
-						<% end %>
-						</td>
-
-						<td><%= user.phone %></td>
-
-						<td><%= user.dob.strftime("%Y/%m/%d") %></td>
-
-						<td><%= user.address %></td>
-
-						<td><%= user.created_at.strftime("%Y/%m/%d") %></td>
-
-						<td><%= user.updated_at.strftime("%Y/%m/%d") %></td>
-						
-						<td>
-						
-						<button class="btn btn-danger deletebtn" onclick="confirmDeleteModal(<%=  user.id %>)" >Delete</button>
-
-						<!-- Delete Modal -->
-						<div class="modal fade" id="exampleModal<%=user.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
-										<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<p> Are you sure to delete this user? </p>
-										<p>ID: <%= user.id %></p>
-										<p>Name: <%= user.name %></p>
-										<p>Email: <%= user.email %></p>
-										<p>Phone: <%= user.phone %></p>
-										<p>Date of Birth: <%= user.dob.strftime("%Y/%m/%d") %></p>
-										<p>Address: <%= user.address %></p>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" id="no" data-bs-dismiss="modal">Cancel</button>
-										<%= link_to 'Delete', user_path(user), class:"btn btn-danger sure", method: 'delete' , onclick:"stopModal(#{user.id})" %>
-										</div>
-								</div>
-							</div>
-						</div>
-
-						</td>	
-
-						</tr>
+				<%= render 'user_row' , user: user %>
+					
 			<% end %>
 
-			</tbody>
+		</tbody>
 
 	</table>
 
 </div>
 
+<!-- Create Modal -->
+<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="newUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newUserModalLabel">Create New User</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+			<div id="newUserForm">
+			</div>
+    </div>
+  </div>
+</div>
+
+<!-- Show Modal -->
+<div class="modal fade" id="showUserModal" tabindex="-1" role="dialog" aria-labelledby="showUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showUserModalLabel">User Confirm</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+			<div id="showUserDetails">
+			</div>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
 
-function confirmDeleteModal(id){
+	function confirmDeleteModal(id){
 
-  $('#exampleModal'+id).modal('show');
+		$('#exampleModal'+id).modal('show');
 
-}    
+	}    
 
-function stopModal(id){
-	
-	$('#exampleModal'+id).modal('hide');
-	
-} 
-  
-function confirmViewModal(id){
-
-  $('#viewModal'+id).modal('show');
-
-} 
+	function stopModal(id){
+		
+		$('#exampleModal'+id).modal('hide');
+		
+	} 
 
 </script>
