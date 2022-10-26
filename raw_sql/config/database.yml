@@ -8,20 +8,20 @@ default: &default
   adapter: mysql2
   pool: 5
   timeout: 5000
-  username: root
-  password: $$228ymnl67igmms$$
+  username: <%= ENV['POSTGRES_USERNAME'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 development:
   <<: *default
-  database: test1
+  database: <%= ENV['DB_Name'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: test1
+  database: <%= ENV['DB_Name'] %>
 
 production:
   <<: *default
-  database: test1
+  database: <%= ENV['DB_Name'] %>
