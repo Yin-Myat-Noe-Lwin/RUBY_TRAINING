@@ -30,18 +30,6 @@ class ApplicationController < ActionController::Base
 
   end
 
-  def require_user
-    
-    if !logged_in?
-
-      flash[:alert] = "Please log in"
-
-      redirect_to "board_path"
-
-    end
-
-  end
-
   def remember(user)
 
     cookies.permanent.signed[:user_id] = user.id

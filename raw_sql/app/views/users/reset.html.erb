@@ -1,6 +1,7 @@
 <h5 class="form-header">Reset Your Password</h5>
 
 <div class="form">
+
 <%= form_with url: "/reset", method: 'post' , model: @user do |form| %>
  
   <%= form.label :query, "E-Mail Address:"  , class: "space"  %>

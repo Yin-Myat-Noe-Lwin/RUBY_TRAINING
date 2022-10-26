@@ -13,6 +13,9 @@
   <%= form.label :query, "Password" , class: "space" %><br>
   <%= form.password_field :password , class: "control" %><br>
 
+  <%= form.label :query, "Password Confirmation" , class: "space" %><br>
+  <%= form.password_field :password_confirmation , class: "control" %><br>
+
   <%= form.label :query, "Type" , class: "space" %><br>
   <%= form.select :userType, [["Admin", "0"], ["User", "1"]] , class: "control" %><br>
 
