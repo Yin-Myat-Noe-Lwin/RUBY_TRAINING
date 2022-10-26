@@ -235,6 +235,7 @@ div.field_with_errors div.ui-effects-wrapper {
 
 .field_with_errors label {
 
+  margin-left: 100px;
   color: #ed0e0e;
   font-weight: bold;
 

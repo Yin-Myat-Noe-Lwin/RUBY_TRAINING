@@ -16,7 +16,7 @@
 
 	<% else %>
 
-		<%= "-" %>
+		<%= "" %>
 
 	<% end %>
 
@@ -47,36 +47,44 @@
 	<td><%= user.updated_at.strftime("%Y/%m/%d") %></td>
 						
 	<td>
-						
-		<button class="btn btn-danger deletebtn" onclick="confirmDeleteModal(<%=  user.id %>)" >Delete</button>
 
-		<!-- Delete Modal -->
-		<div class="modal fade" id="exampleModal<%=user.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
-							<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p> Are you sure to delete this user? </p>
-							<p>ID: <%= user.id %></p>
-							<p>Name: <%= user.name %></p>
-							<p>Email: <%= user.email %></p>
-							<p>Phone: <%= user.phone %></p>
-							<p>Date of Birth: <%= user.dob.strftime("%Y/%m/%d") %></p>
-							<p>Address: <%= user.address %></p>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary no-modal" id="no" data-bs-dismiss="modal">Cancel</button>
-							<%= link_to 'Delete', user_path(user), class:"btn btn-danger sure", method: 'delete' ,  remote: true , onclick:"stopModal(#{user.id})" %>
+		<% if user == current_user %>
+
+			<%= "" %>
+
+		<% else %>
+						
+			<button class="btn btn-danger deletebtn" onclick="confirmDeleteModal(<%=  user.id %>)" >Delete</button>
+
+			<!-- Delete Modal -->
+			<div class="modal fade" id="exampleModal<%=user.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Delete Confirm</h5>
+								<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p> Are you sure to delete this user? </p>
+								<p>ID: <%= user.id %></p>
+								<p>Name: <%= user.name %></p>
+								<p>Email: <%= user.email %></p>
+								<p>Phone: <%= user.phone %></p>
+								<p>Date of Birth: <%= user.dob.strftime("%Y/%m/%d") %></p>
+								<p>Address: <%= user.address %></p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary no-modal" id="no" data-bs-dismiss="modal">Cancel</button>
+								<%= link_to 'Delete', user_path(user), class:"btn btn-danger sure", method: 'delete' ,  remote: true , onclick:"stopModal(#{user.id})" %>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-	</td>	
+			<% end %>
+
+		</td>	
 
 </tr>	
